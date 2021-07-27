@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import WeatherConditions from "./WeatherConditions";
 
 export default function SearchEngine() {
   const [city, setCity] = useState("");
@@ -52,29 +53,17 @@ export default function SearchEngine() {
         onChange={updateCity}
       />
       <input className="btn-primary" type="submit" value="Search" />
-      <button className="btn-success" onClick={getLocation}>
-        Current
+      <button className="float-left btn-success" onClick={getLocation}>
+        <i className="fas fa-map-marker-alt"></i>
       </button>
     </form>
   );
   if (message) {
     return (
       <div className="SearchBar">
-        {" "}
         {form}
-        <div className="weather">
-          <h2 className="centered">
-            {temperature.city}, {temperature.country}
-          </h2>
-          <div>{temperature.description} </div>
-          <h2>{Math.round(temperature.temperature)}℃</h2>
-          <div>Humidity: {temperature.humidity}% </div>
-          <div>Wind: {Math.round(temperature.wind)} m/s </div>
 
-          <div>
-            <img src={temperature.icon} alt="icon" />
-          </div>
-        </div>
+        <WeatherConditions weather={temperature} />
       </div>
     );
   } else {
