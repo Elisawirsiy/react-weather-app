@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export default function SearchEngine() {
-  let [city, setCity] = useState("");
-  let [message, setMessage] = useState("");
-  let [temperature, setTemperature] = useState("");
+  const [city, setCity] = useState("");
+  const [message, setMessage] = useState("");
+  const [temperature, setTemperature] = useState("");
 
   function showTemperature(response) {
     setMessage(true);
     setTemperature({
+      city: response.data.name,
+      country: response.data.sys.country,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
@@ -19,15 +21,28 @@ export default function SearchEngine() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    let apiKey = `3a6fe3259445cfb2e45add19395f004f`;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const apiKey = `3a6fe3259445cfb2e45add19395f004f`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(showTemperature);
+  }
+
+  function searchLocation(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    const apiKey = `3a6fe3259445cfb2e45add19395f004f`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(showTemperature);
+  }
+  function getLocation(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(searchLocation);
   }
 
   function updateCity(event) {
     event.preventDefault();
     setCity(event.target.value);
   }
+
   let form = (
     <form onSubmit={handleSubmit}>
       <input
@@ -36,7 +51,10 @@ export default function SearchEngine() {
         autoFocus
         onChange={updateCity}
       />
-      <input type="submit" value="Search" />
+      <input className="btn-primary" type="submit" value="Search" />
+      <button className="btn-success" onClick={getLocation}>
+        Current
+      </button>
     </form>
   );
   if (message) {
@@ -44,16 +62,19 @@ export default function SearchEngine() {
       <div className="SearchBar">
         {" "}
         {form}
-        <ul>
-          <h2>{city}</h2>
-          <li>Temperature: {Math.round(temperature.temperature)}℃</li>
-          <li>Humidity: {temperature.humidity}% </li>
-          <li>Wind: {Math.round(temperature.wind)} m/s </li>
-          <li>Description: {temperature.description} </li>
-          <li>
+        <div className="weather">
+          <h2 className="centered">
+            {temperature.city}, {temperature.country}
+          </h2>
+          <div>{temperature.description} </div>
+          <h2>{Math.round(temperature.temperature)}℃</h2>
+          <div>Humidity: {temperature.humidity}% </div>
+          <div>Wind: {Math.round(temperature.wind)} m/s </div>
+
+          <div>
             <img src={temperature.icon} alt="icon" />
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     );
   } else {
