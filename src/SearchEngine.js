@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherConditions from "./WeatherConditions";
+import "./SearchEngine.css";
 
 export default function SearchEngine() {
   const [city, setCity] = useState("");
@@ -52,8 +53,8 @@ export default function SearchEngine() {
         autoFocus
         onChange={updateCity}
       />
-      <input className="btn-primary" type="submit" value="Search" />
-      <button className="float-left btn-success" onClick={getLocation}>
+      <input className="btn btn-primary" type="submit" value="Search" />
+      <button className="float-left btn btn-success" onClick={getLocation}>
         <i className="fas fa-map-marker-alt"></i>
       </button>
     </form>
