@@ -5,7 +5,7 @@ import "./SearchEngine.css";
 
 export default function SearchEngine() {
   const [city, setCity] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(false);
   const [temperature, setTemperature] = useState("");
 
   function showTemperature(response) {

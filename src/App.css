@@ -19,21 +19,22 @@
   text-align: center;
   font-size: 14px;
 }
-.weather-con {
-  display: flex;
-}
+
 .main-temp {
+  float: left;
   font-size: 60px;
   line-height: 1;
-  margin-top: 5px;
+  margin: 5px 0 0 -15px;
 }
 .temp-units {
   font-size: 16px;
   line-height: 1;
-  margin-top: 5px;
+
+  position: relative;
 }
 .weather-icon {
-  margin-top: -10px;
+  margin: -10px 0 0 -10px;
+  line-height: 60px;
 }
 .weather-description {
   text-transform: capitalize;

@@ -4,8 +4,8 @@ import SearchEngine from "./SearchEngine";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-body">
+    <div className="App container">
+      <header className="App-body ">
         <h1>Weather App</h1>
         <SearchEngine />
       </header>
