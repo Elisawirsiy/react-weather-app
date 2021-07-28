@@ -13,20 +13,30 @@
   margin: 0 auto;
   margin-top: 50px;
   max-width: 500px;
+  padding: 15px;
 }
 .Footer {
   text-align: center;
   font-size: 14px;
 }
+.weather-con {
+  display: flex;
+}
 .main-temp {
-  float: left;
-  font-size: 42px;
+  font-size: 60px;
   line-height: 1;
+  margin-top: 5px;
 }
 .temp-units {
-  float: left;
   font-size: 16px;
   line-height: 1;
+  margin-top: 5px;
+}
+.weather-icon {
+  margin-top: -10px;
+}
+.weather-description {
+  text-transform: capitalize;
 }
 li {
   list-style-type: none;
