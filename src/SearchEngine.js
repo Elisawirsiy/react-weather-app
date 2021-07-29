@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherConditions from "./WeatherConditions";
-import WeatherIcon from "./WeatherIcon";
+
 import "./SearchEngine.css";
 
 export default function SearchEngine() {
