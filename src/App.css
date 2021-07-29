@@ -24,7 +24,7 @@
   float: left;
   font-size: 60px;
   line-height: 1;
-  margin: 5px 0 0 -15px;
+  margin: 5px 0 0 5px;
 }
 .temp-units {
   font-size: 16px;
@@ -32,13 +32,14 @@
 
   position: relative;
 }
-.weather-icon {
+/*.WeatherConditions canvas {
   margin: -10px 0 0 -10px;
   line-height: 60px;
-}
-.weather-description {
-  text-transform: capitalize;
-}
+  display: inline-block;
+  margin-right: 5px;
+  margin-top: 5px;
+}*/
+
 li {
   list-style-type: none;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import DateTime from "./DateTime";
 import WeatherUnits from "./WeatherUnits";
+import WeatherIcon from "./WeatherIcon";
 
 export default function WeatherConditions(props) {
   return (
@@ -11,13 +12,13 @@ export default function WeatherConditions(props) {
             {props.weather.city}, {props.weather.country}
           </h2>
           <DateTime />
-          <div className="weather-description">{props.weather.description}</div>
+          <div className="text-capitalize">{props.weather.description}</div>
         </div>
         <div className="row">
           <div className="col-sm-6">
             <div className="clearfix d-flex">
               <div className="float-left weather-icon">
-                <img src={props.weather.icon} alt="icon" />
+                <WeatherIcon code={props.weather.icon} />
               </div>
               <div className="float-left">
                 <WeatherUnits celsius={props.weather.temperature} />

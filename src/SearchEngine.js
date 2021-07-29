@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherConditions from "./WeatherConditions";
+import WeatherIcon from "./WeatherIcon";
 import "./SearchEngine.css";
 
 export default function SearchEngine() {
@@ -17,7 +18,7 @@ export default function SearchEngine() {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       description: response.data.weather[0].description,
-      icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      icon: response.data.weather[0].icon,
     });
   }
 
