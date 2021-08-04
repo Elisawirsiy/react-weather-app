@@ -2,23 +2,29 @@ form {
   margin-bottom: 15px;
 }
 button {
-  margin-left: 5px;
+  /* margin-left: 5px;*/
   position: relative;
 }
 
 input[type="text"] {
   border-radius: 2px;
   border: none;
-
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
   height: 44px;
-
   padding: 10px;
   width: 300px;
 }
 
 .btn {
   border-radius: 2px;
-  color: #fff;
+  border-width: 5px;
+  color: black;
+  background-color: #fff;
   height: 44px;
+}
+.btn:hover {
+  background-color: #094679;
+}
+.btn-success {
+  margin-left: -3px;
 }

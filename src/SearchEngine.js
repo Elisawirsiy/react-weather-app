@@ -52,16 +52,25 @@ export default function SearchEngine(props) {
 
   let form = (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Enter a city..."
-        autoFocus
-        onChange={updateCity}
-      />
-      <input className="btn btn-primary" type="submit" value="Search" />
-      <button className="float-left btn btn-success" onClick={getLocation}>
-        <i className="fas fa-map-marker-alt"></i>
-      </button>
+      <div className="row">
+        <div className="col-6 me-3 p-0">
+          <input
+            type="text"
+            placeholder="Enter a city..."
+            className="form-control search-input"
+            autoFocus
+            onChange={updateCity}
+          />
+        </div>
+        <div className="col-3 ms-5">
+          <input className="btn" type="submit" value="Search" />
+        </div>
+        <div className="col me-1 p-0">
+          <button className="float-left btn" onClick={getLocation}>
+            <i class="fas fa-street-view"></i>
+          </button>
+        </div>
+      </div>
     </form>
   );
   if (weatherData.ready) {

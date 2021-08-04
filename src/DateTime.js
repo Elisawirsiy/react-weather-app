@@ -45,8 +45,8 @@ export default function DateTime(props) {
 
   return (
     <div className="Date">
-      <div className="date">{formatDate}</div>
-      <div className="time">Last Updated: {formatTime}</div>
+      <div className="date text-muted">{formatDate}</div>
+      <div className="time text-muted">Last Updated: {formatTime}</div>
     </div>
   );
 }
