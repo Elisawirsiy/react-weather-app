@@ -1,6 +1,6 @@
 import React from "react";
 
-function DateTime() {
+export default function DateTime(props) {
   let currentTime = new Date();
 
   let days = [
@@ -50,4 +50,3 @@ function DateTime() {
     </div>
   );
 }
-export default DateTime;

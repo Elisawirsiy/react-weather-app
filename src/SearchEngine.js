@@ -1,22 +1,25 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherConditions from "./WeatherConditions";
+import WeatherForecast from "./WeatherForecast";
 
 import "./SearchEngine.css";
 
-export default function SearchEngine() {
+export default function SearchEngine(props) {
   const [city, setCity] = useState("");
-  const [message, setMessage] = useState(false);
-  const [temperature, setTemperature] = useState("");
+
+  const [weatherData, setWeatherData] = useState({ ready: false });
 
   function showTemperature(response) {
-    setMessage(true);
-    setTemperature({
+    setWeatherData({
+      ready: true,
       city: response.data.name,
       country: response.data.sys.country,
+      coordinates: response.data.coord,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
+      date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
       icon: response.data.weather[0].icon,
     });
@@ -25,15 +28,16 @@ export default function SearchEngine() {
   function handleSubmit(event) {
     event.preventDefault();
     const apiKey = `3a6fe3259445cfb2e45add19395f004f`;
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(showTemperature);
   }
 
   function searchLocation(position) {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
     const apiKey = `3a6fe3259445cfb2e45add19395f004f`;
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
     axios.get(apiUrl).then(showTemperature);
   }
   function getLocation(event) {
@@ -60,12 +64,15 @@ export default function SearchEngine() {
       </button>
     </form>
   );
-  if (message) {
+  if (weatherData.ready) {
     return (
       <div className="SearchBar">
+        <br />
         {form}
-
-        <WeatherConditions weather={temperature} />
+        <br />
+        <WeatherConditions data={weatherData} />
+        <br />
+        <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {

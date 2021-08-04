@@ -29,8 +29,10 @@
 .temp-units {
   font-size: 16px;
   line-height: 1;
-
   position: relative;
+}
+.weather-icon {
+  margin-top: 5px;
 }
 /*.WeatherConditions canvas {
   margin: -10px 0 0 -10px;

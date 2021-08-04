@@ -9,26 +9,26 @@ export default function WeatherConditions(props) {
       <div className="row">
         <div className="col-12">
           <h2>
-            {props.weather.city}, {props.weather.country}
+            {props.data.city}, {props.data.country}
           </h2>
-          <DateTime />
-          <div className="text-capitalize">{props.weather.description}</div>
+          <DateTime date={props.data.date} />
+          <div className="text-capitalize">{props.data.description}</div>
         </div>
         <div className="row">
           <div className="col-sm-6">
             <div className="clearfix d-flex">
               <div className="float-left weather-icon">
-                <WeatherIcon code={props.weather.icon} />
+                <WeatherIcon code={props.data.icon} size={52} />
               </div>
               <div className="float-left">
-                <WeatherUnits celsius={props.weather.temperature} />
+                <WeatherUnits celsius={props.data.temperature} />
               </div>
             </div>
           </div>
           <div className="col-sm-6">
             <ul>
-              <li>Humidity: {props.weather.humidity} %</li>
-              <li>Wind speed: {Math.round(props.weather.wind)} m/s</li>
+              <li>Humidity: {props.data.humidity} %</li>
+              <li>Wind speed: {Math.round(props.data.wind)} m/s</li>
             </ul>
           </div>
         </div>
